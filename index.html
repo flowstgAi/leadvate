@@ -1,0 +1,1528 @@
+.launch-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .launch-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .launch-arrow {
+                align-self: flex-end;
+            }<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadvate - Websites & AI Automation That Generate Leads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --dark: #0a0e1a;
+            --darker: #050810;
+            --text: #ffffff;
+            --gray: #94a3b8;
+            --mint: #4ade80;
+            --mint-hover: #22c55e;
+            --border: #1e293b;
+            --bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background: var(--dark);
+        }
+
+        h1 { 
+            font-size: clamp(3rem, 6vw, 5.5rem); 
+            font-weight: 700; 
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+        h2 { 
+            font-size: clamp(2.5rem, 5vw, 4rem); 
+            font-weight: 700; 
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+        h3 { font-size: 1.5rem; font-weight: 600; }
+        p { font-size: 1.125rem; color: var(--gray); max-width: 65ch; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 7rem 0; }
+        .tag { 
+            font-size: 0.875rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            color: var(--mint); 
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .tag::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--mint);
+        }
+
+        .outline-text {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--border);
+            text-stroke: 2px var(--border);
+        }
+
+        .fade { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .fade.visible { opacity: 1; transform: translateY(0); }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            color: var(--text);
+        }
+        .logo .mint { color: var(--mint); }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover { color: var(--mint); }
+
+        .btn {
+            background: var(--mint);
+            color: var(--dark);
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--mint-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(74, 222, 128, 0.4);
+        }
+
+        .btn::after {
+            content: '↑';
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover::after {
+            transform: translateY(-2px) rotate(45deg);
+        }
+
+        .menu-toggle { display: none; }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            width: 150px;
+            height: 150px;
+            border: 3px solid var(--mint);
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 { 
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+        .hero h1 .outline-text {
+            display: block;
+        }
+        .hero p { 
+            font-size: 1.25rem; 
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            color: var(--gray);
+        }
+        .hero-cta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+        .hero-visual {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 500px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%); }
+            50% { transform: translateY(-55%); }
+        }
+
+        .hero-visual .circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+        }
+
+        .hero-visual .circle:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: 50px;
+            left: 50px;
+            background: rgba(74, 222, 128, 0.05);
+        }
+
+        .hero-visual .circle:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 100px;
+            left: 100px;
+            background: var(--mint);
+            opacity: 0.8;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-visual .accent {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: transparent;
+            border: 3px solid var(--mint);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .hero-visual .accent:nth-child(3) {
+            top: 0;
+            right: 50px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Services */
+        .services {
+            background: var(--bg);
+            position: relative;
+        }
+
+        .services::before {
+            content: 'Digital solutions';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(8rem, 20vw, 15rem);
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(74, 222, 128, 0.05);
+            text-stroke: 1px rgba(74, 222, 128, 0.05);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .services .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .services-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: end;
+            margin-bottom: 4rem;
+        }
+
+        .services-left h2 {
+            margin-top: 1rem;
+            line-height: 1.1;
+        }
+
+        .services-right {
+            padding-bottom: 0.5rem;
+        }
+
+        .services-right p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .service-item {
+            display: grid;
+            grid-template-columns: 100px 1fr 80px;
+            align-items: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+            gap: 3rem;
+            transition: all 0.3s;
+        }
+
+        .service-item:hover {
+            padding-left: 1rem;
+        }
+
+        .service-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--mint);
+            opacity: 0.3;
+            transition: all 0.3s;
+        }
+
+        .service-item:hover .service-number {
+            opacity: 1;
+        }
+
+        .service-content h3 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .service-content p {
+            font-size: 1rem;
+            color: var(--gray);
+            max-width: 600px;
+        }
+
+        .service-arrow {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--mint);
+            transition: all 0.3s;
+            margin-left: auto;
+        }
+
+        .service-item:hover .service-arrow {
+            background: var(--mint);
+            color: var(--dark);
+            border-color: var(--mint);
+            transform: rotate(-45deg);
+        }
+
+        /* Process/About Section */
+        .process {
+            background: var(--dark);
+            position: relative;
+            padding: 7rem 0 4rem;
+        }
+
+        .process .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-company {
+            max-width: 700px;
+            margin-bottom: 5rem;
+        }
+
+        .about-company h2 {
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-company p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .read-more:hover {
+            color: var(--mint);
+            gap: 0.8rem;
+        }
+
+        .web-design-agency {
+            margin-top: 4rem;
+        }
+
+        .agency-heading {
+            font-size: clamp(4rem, 10vw, 8rem);
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .agency-heading .solid {
+            color: var(--text);
+        }
+
+        .agency-heading .outline-text {
+            display: inline;
+        }
+
+        /* Launch Section */
+        .launch-section {
+            background: var(--darker);
+            padding: 4rem 0;
+        }
+
+        .launch-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .launch-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .launch-item:last-child {
+            border-bottom: none;
+        }
+
+        .launch-item h3 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .launch-arrow {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--mint);
+            transition: all 0.3s;
+        }
+
+        .launch-item:hover .launch-arrow {
+            background: var(--mint);
+            color: var(--dark);
+            border-color: var(--mint);
+            transform: rotate(45deg);
+        }
+
+        /* Features */
+        .features { background: var(--bg); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .feat-list { display: flex; flex-direction: column; gap: 2.5rem; }
+
+        .feat {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .feat:hover {
+            background: var(--dark);
+        }
+
+        .feat-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--dark);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .feat:hover .feat-icon {
+            background: var(--mint);
+            border-color: var(--mint);
+        }
+
+        .feat:hover .feat-icon svg {
+            stroke: var(--dark);
+        }
+
+        .feat h4 { margin-bottom: 0.5rem; font-size: 1.25rem; color: var(--text); }
+        .feat p { font-size: 0.95rem; }
+
+        .feat-visual {
+            position: relative;
+            height: 500px;
+        }
+
+        .feat-visual .circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+        }
+
+        .feat-visual .circle:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: 50px;
+            left: 50px;
+            background: rgba(74, 222, 128, 0.05);
+        }
+
+        .feat-visual .circle:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 100px;
+            left: 100px;
+            border: 3px solid var(--mint);
+            opacity: 0.3;
+        }
+
+        .feat-visual .dot {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--mint);
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .feat-visual .dot:nth-child(3) {
+            top: 50px;
+            right: 50px;
+        }
+
+        .feat-visual .dot:nth-child(4) {
+            bottom: 100px;
+            left: 50px;
+            animation-delay: 1s;
+        }
+
+        /* Stats */
+        .stats-section {
+            background: var(--dark);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 2rem;
+            border-radius: 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            border-color: var(--mint);
+        }
+
+        .stat h3 { 
+            font-size: 3.5rem; 
+            color: var(--mint); 
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .stat p { margin: 0 auto; }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--dark);
+        }
+
+        .testimonial-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-bottom: 8rem;
+            padding: 3rem;
+            border-radius: 20px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            transition: all 0.4s;
+        }
+
+        .testimonial-item:hover {
+            border-color: var(--mint);
+            box-shadow: 0 20px 60px rgba(74, 222, 128, 0.1);
+        }
+
+        .testimonial-item.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .testimonial-item.reverse .testimonial-visual {
+            order: 2;
+        }
+
+        .testimonial-item.reverse .testimonial-content {
+            order: 1;
+        }
+
+        .testimonial-visual {
+            position: relative;
+        }
+
+        .project-number {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 6rem;
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--border);
+            text-stroke: 2px var(--border);
+            z-index: 0;
+        }
+
+        .project-screenshot {
+            position: relative;
+            z-index: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--darker);
+            transition: all 0.4s;
+        }
+
+        .testimonial-item:hover .project-screenshot {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .screenshot-placeholder {
+            aspect-ratio: 16/10;
+        }
+
+        .browser-bar {
+            background: #1a1d29;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .browser-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .browser-dots span:nth-child(1) { background: #ff5f57; }
+        .browser-dots span:nth-child(2) { background: #ffbd2e; }
+        .browser-dots span:nth-child(3) { background: #28ca42; }
+
+        .browser-url {
+            background: var(--dark);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .screenshot-content {
+            padding: 2rem;
+        }
+
+        .mock-header {
+            width: 60%;
+            height: 40px;
+            background: linear-gradient(90deg, var(--border) 0%, var(--mint) 50%, var(--border) 100%);
+            background-size: 200% 100%;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            animation: shimmer 2s infinite;
+        }
+
+        .mock-text {
+            width: 100%;
+            height: 12px;
+            background: var(--border);
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+        }
+
+        .mock-text.short {
+            width: 70%;
+        }
+
+        .mock-button {
+            width: 120px;
+            height: 40px;
+            background: var(--mint);
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--mint);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            gap: 0.8rem;
+        }
+
+        .project-link svg {
+            transition: all 0.3s;
+        }
+
+        .project-link:hover svg {
+            transform: rotate(45deg);
+        }
+
+        .testimonial-content {
+            padding: 1rem 0;
+        }
+
+        .testimonial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--mint) 0%, #22c55e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--dark);
+        }
+
+        .client-info h4 {
+            font-size: 1.25rem;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .client-role {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .testimonial-stars {
+            font-size: 1.25rem;
+            color: #fbbf24;
+        }
+
+        blockquote {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--gray);
+            font-style: italic;
+            margin: 0 0 1.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--mint);
+        }
+
+        .testimonial-meta {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            padding: 0.5rem 1rem;
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--mint);
+        }
+
+        /* CTA */
+        .cta-dark {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--bg) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-dark::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cta-dark .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-dark h2 { color: white; margin-bottom: 1.5rem; }
+        .cta-dark p { color: var(--gray); margin: 0 auto 2.5rem; font-size: 1.25rem; }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: var(--gray);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        footer h3 { 
+            color: white; 
+            margin-bottom: 1rem; 
+            font-size: 1.5rem;
+        }
+        footer h3 .mint { color: var(--mint); }
+        footer h4 { color: white; margin-bottom: 1.5rem; }
+        footer p { color: var(--gray); font-size: 0.95rem; }
+        footer ul { list-style: none; }
+        footer li { margin-bottom: 0.75rem; }
+        footer a { 
+            color: var(--gray); 
+            text-decoration: none; 
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        footer a:hover { color: var(--mint); }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        /* WhatsApp */
+        .wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--mint);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(74, 222, 128, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .wa:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(74, 222, 128, 0.6);
+        }
+
+        .wa svg {
+            fill: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 5rem 2rem;
+                transition: all 0.3s;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+                border-left: 1px solid var(--border);
+            }
+
+            .nav-links.active { right: 0; }
+
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                cursor: pointer;
+                z-index: 1001;
+            }
+
+            .menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 2px;
+                background: var(--text);
+                margin: 5px 0;
+                transition: all 0.3s;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .features-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-header {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .service-item {
+                grid-template-columns: 60px 1fr 60px;
+                gap: 1.5rem;
+                padding: 2rem 0;
+            }
+
+            .service-number {
+                font-size: 2rem;
+            }
+
+            .service-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .testimonial-item {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .testimonial-item.reverse .testimonial-visual {
+                order: 1;
+            }
+
+            .testimonial-item.reverse .testimonial-content {
+                order: 2;
+            }
+
+            .project-number {
+                font-size: 4rem;
+            }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .section { padding: 4rem 0; }
+            .step::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">LEADVATE<span class="mint">.ONLINE</span></div>
+            <ul class="nav-links" id="nav">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#features">Benefits</a></li>
+                <li><a href="#contact" class="btn">Let's Talk</a></li>
+            </ul>
+            <button class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('active')">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero section">
+        <div class="container">
+            <div class="hero-content fade">
+                <h1>
+                    AI-POWERED <span class="outline-text">LEAD GENERATION</span> WEBSITES
+                </h1>
+                <p>Build conversion-focused websites powered by AI automation. Turn traffic into qualified leads while you focus on growing your business.</p>
+                <div class="hero-cta">
+                    <a href="https://wa.me/917975456174" class="btn">Build Your Lead Engine</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="accent"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services section">
+        <div class="container">
+            <div class="services-header fade">
+                <div class="services-left">
+                    <span class="tag">What We Do</span>
+                    <h2>Services Built<br>For Growth</h2>
+                </div>
+                <div class="services-right">
+                    <p>We combine websites and AI automation to create complete lead generation systems that work 24/7 to grow your business.</p>
+                </div>
+            </div>
+            
+            <div class="services-list">
+                <div class="service-item fade">
+                    <div class="service-number">01</div>
+                    <div class="service-content">
+                        <h3>Conversion-Focused Websites</h3>
+                        <p>Fast, mobile-optimized websites designed to convert visitors into leads. Every element is strategically placed to drive action.</p>
+                    </div>
+                    <div class="service-arrow">→</div>
+                </div>
+
+                <div class="service-item fade">
+                    <div class="service-number">02</div>
+                    <div class="service-content">
+                        <h3>AI Chatbots</h3>
+                        <p>Intelligent chatbots that qualify leads 24/7. Answer questions instantly and capture contact information while you sleep.</p>
+                    </div>
+                    <div class="service-arrow">→</div>
+                </div>
+
+                <div class="service-item fade">
+                    <div class="service-number">03</div>
+                    <div class="service-content">
+                        <h3>AI Automation</h3>
+                        <p>Automated follow-ups via WhatsApp, email, and CRM. Turn cold leads into warm conversations without manual work.</p>
+                    </div>
+                    <div class="service-arrow">→</div>
+                </div>
+
+                <div class="service-item fade">
+                    <div class="service-number">04</div>
+                    <div class="service-content">
+                        <h3>Lead Funnel Optimization</h3>
+                        <p>Data-driven improvements to your funnel. We analyze, test, and optimize every touchpoint for maximum conversions.</p>
+                    </div>
+                    <div class="service-arrow">→</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="process section">
+        <div class="container">
+            <div class="about-company fade">
+                <span class="tag">About Company</span>
+                <h2>Our Main Goal to Satisfied Local & Global Clients</h2>
+                <p style="margin-top: 1.5rem; max-width: 600px;">At <strong>Leadvate</strong>, we understand that your online presence is more than just code and graphics; it's the digital heartbeat of your brand. That's why we specialize in creating custom web solutions tailored to your unique needs.</p>
+                <a href="#contact" class="read-more">Read More →</a>
+            </div>
+
+            <div class="web-design-agency fade">
+                <h2 class="agency-heading">
+                    <span class="solid">WEB</span> <span class="outline-text">DESIGN</span><br>
+                    <span class="solid">AGENCY</span>
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="launch-section section">
+        <div class="container">
+            <div class="launch-grid">
+                <div class="launch-item fade">
+                    <h3>Launch and Deployment</h3>
+                    <div class="launch-arrow">→</div>
+                </div>
+                <div class="launch-item fade">
+                    <div class="launch-arrow">→</div>
+                    <h3>Maintenance and Updates</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features section">
+        <div class="container">
+            <div class="fade">
+                <span class="tag">Why Leadvate</span>
+                <h2>Built For Results</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feat-list">
+                    <div class="feat fade">
+                        <div class="feat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Qualified Leads</h4>
+                            <p>AI qualification filters out tire-kickers, so you only talk to serious prospects ready to buy.</p>
+                        </div>
+                    </div>
+
+                    <div class="feat fade">
+                        <div class="feat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>24/7 Lead Capture</h4>
+                            <p>Never miss a lead again. Our systems work around the clock, even when you're offline.</p>
+                        </div>
+                    </div>
+
+                    <div class="feat fade">
+                        <div class="feat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Scale Without Hiring</h4>
+                            <p>Automation handles repetitive tasks, allowing your team to focus on closing deals.</p>
+                        </div>
+                    </div>
+
+                    <div class="feat fade">
+                        <div class="feat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Higher ROI</h4>
+                            <p>Increase conversions and reduce cost per lead with optimized funnels and automation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feat-visual fade">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section section">
+        <div class="container">
+            <div class="fade" style="text-align: center; margin-bottom: 3rem;">
+                <span class="tag">Proven Results</span>
+                <h2>Numbers That Matter</h2>
+            </div>
+
+            <div class="stats">
+                <div class="stat fade">
+                    <h3>3x</h3>
+                    <p>Average increase in qualified leads</p>
+                </div>
+                <div class="stat fade">
+                    <h3>24/7</h3>
+                    <p>Lead capture and qualification</p>
+                </div>
+                <div class="stat fade">
+                    <h3>40%</h3>
+                    <p>Reduction in cost per lead</p>
+                </div>
+                <div class="stat fade">
+                    <h3>10hrs</h3>
+                    <p>Saved per week on manual follow-ups</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials section">
+        <div class="container">
+            <div class="fade" style="margin-bottom: 4rem;">
+                <span class="tag">Recent Works Gallery</span>
+                <h2>Let's Look Our Recent<br>Project Gallery</h2>
+            </div>
+
+            <div class="testimonial-item fade">
+                <div class="testimonial-visual">
+                    <div class="project-number">01</div>
+                    <div class="project-screenshot">
+                        <div class="screenshot-placeholder">
+                            <div class="browser-bar">
+                                <div class="browser-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="browser-url">techflow.io</div>
+                            </div>
+                            <div class="screenshot-content">
+                                <div class="mock-header"></div>
+                                <div class="mock-text"></div>
+                                <div class="mock-text short"></div>
+                                <div class="mock-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="project-link">
+                        TechFlow
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </div>
+                <div class="testimonial-content">
+                    <div class="testimonial-header">
+                        <div class="client-info">
+                            <div class="client-avatar">
+                                <span>JD</span>
+                            </div>
+                            <div>
+                                <h4>James Davidson</h4>
+                                <p class="client-role">CEO, TechFlow Solutions</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-stars">★★★★★</div>
+                    </div>
+                    <blockquote>
+                        "Leadvate transformed our online presence completely. The AI-powered website they built generates qualified leads 24/7. Our conversion rate increased by 340% in just 3 months. The automation saves our team 15+ hours per week."
+                    </blockquote>
+                    <div class="testimonial-meta">
+                        <span class="project-tag">E-Commerce</span>
+                        <span class="project-tag">AI Chatbot</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-item reverse fade">
+                <div class="testimonial-content">
+                    <div class="testimonial-header">
+                        <div class="client-info">
+                            <div class="client-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <span>SM</span>
+                            </div>
+                            <div>
+                                <h4>Sarah Martinez</h4>
+                                <p class="client-role">Founder, GrowthLab Marketing</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-stars">★★★★★</div>
+                    </div>
+                    <blockquote>
+                        "The lead generation system Leadvate created is pure magic. We went from 20 leads per month to over 200 qualified leads. The chatbot handles initial conversations perfectly, and the follow-up automation is seamless."
+                    </blockquote>
+                    <div class="testimonial-meta">
+                        <span class="project-tag">SaaS Platform</span>
+                        <span class="project-tag">Marketing Automation</span>
+                    </div>
+                </div>
+                <div class="testimonial-visual">
+                    <div class="project-number">02</div>
+                    <div class="project-screenshot">
+                        <div class="screenshot-placeholder">
+                            <div class="browser-bar">
+                                <div class="browser-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="browser-url">growthlabmarketing.com</div>
+                            </div>
+                            <div class="screenshot-content">
+                                <div class="mock-header"></div>
+                                <div class="mock-text"></div>
+                                <div class="mock-text short"></div>
+                                <div class="mock-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="project-link">
+                        GrowthLab
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="testimonial-item fade">
+                <div class="testimonial-visual">
+                    <div class="project-number">03</div>
+                    <div class="project-screenshot">
+                        <div class="screenshot-placeholder">
+                            <div class="browser-bar">
+                                <div class="browser-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="browser-url">urbanfitness.io</div>
+                            </div>
+                            <div class="screenshot-content">
+                                <div class="mock-header"></div>
+                                <div class="mock-text"></div>
+                                <div class="mock-text short"></div>
+                                <div class="mock-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="project-link">
+                        Urban Fitness
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </div>
+                <div class="testimonial-content">
+                    <div class="testimonial-header">
+                        <div class="client-info">
+                            <div class="client-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <span>MR</span>
+                            </div>
+                            <div>
+                                <h4>Michael Roberts</h4>
+                                <p class="client-role">Director, Urban Fitness Centers</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-stars">★★★★★</div>
+                    </div>
+                    <blockquote>
+                        "Best investment we made this year. The website converts visitors into gym members automatically. The AI assistant answers questions about pricing and schedules instantly. We've seen a 280% ROI in 6 months."
+                    </blockquote>
+                    <div class="testimonial-meta">
+                        <span class="project-tag">Fitness & Wellness</span>
+                        <span class="project-tag">Booking System</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-dark section">
+        <div class="container fade">
+            <h2>Ready to Build Your Lead Engine?</h2>
+            <p>Let's create a website and AI system that generates leads while you sleep. No fluff, just results.</p>
+            <a href="https://wa.me/917975456174" class="btn">Book a Strategy Call</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>LEADVATE<span class="mint">.ONLINE</span></h3>
+                    <p>We build conversion-focused websites and AI automation systems that help businesses generate qualified leads and scale without manual work.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#process">Process</a></li>
+                        <li><a href="#features">Benefits</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get Started</h4>
+                    <ul>
+                        <li><a href="https://wa.me/917975456174">+91 7975456174 ↑</a></li>
+                        <li><a href="mailto:hello@leadvate.com">hello@leadvate.com ↑</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2025 Leadvate. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/917975456174" class="wa">
+        <svg width="32" height="32" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <script>
+        // Scroll animations
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const header = document.querySelector('header');
+            
+            if (currentScroll > 50) {
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('nav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
