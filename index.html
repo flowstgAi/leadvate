@@ -3,2124 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leadvate - Websites & AI Automation That Generate Leads</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Leadvate — AI-Powered Websites That Generate Leads 24/7</title>
+    <meta name="description" content="Get 3x more qualified leads with conversion-focused websites and AI automation. Free strategy call — limited spots available.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --dark: #0a0e1a;
-            --darker: #050810;
-            --text: #ffffff;
-            --gray: #94a3b8;
-            --mint: #4ade80;
-            --mint-hover: #22c55e;
-            --border: #1e293b;
-            --bg: #0f172a;
-        }
-
-        body {
-            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-            background: var(--dark);
-            position: relative;
-        }
-
-        /* Animated background grid */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(74, 222, 128, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(74, 222, 128, 0.02) 1px, transparent 1px);
-            background-size: 100px 100px;
-            pointer-events: none;
-            z-index: 0;
-            animation: grid-move 20s linear infinite;
-        }
-
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(100px, 100px); }
-        }
-
-        /* Floating orbs in background */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 10%;
-            left: 5%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: float-orb-1 20s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes float-orb-1 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(100px, 50px) scale(1.2); }
-        }
-
-        h1 { 
-            font-size: clamp(2.5rem, 6vw, 5.5rem); 
-            font-weight: 700; 
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-        h2 { 
-            font-size: clamp(2rem, 5vw, 4rem); 
-            font-weight: 700; 
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-        h3 { font-size: 1.5rem; font-weight: 600; }
-        p { font-size: 1.125rem; color: var(--gray); max-width: 65ch; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-        .section { padding: 7rem 0; position: relative; }
-        .tag { 
-            font-size: 0.875rem; 
-            text-transform: uppercase; 
-            letter-spacing: 0.1em; 
-            color: var(--mint); 
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .tag::before {
-            content: '';
-            width: 30px;
-            height: 2px;
-            background: var(--mint);
-        }
-
-        .outline-text {
-            color: transparent;
-            -webkit-text-stroke: 2px var(--border);
-            text-stroke: 2px var(--border);
-        }
-
-        .fade { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .fade.visible { opacity: 1; transform: translateY(0); }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(10, 14, 26, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo { 
-            font-size: 1.5rem; 
-            font-weight: 700; 
-            color: var(--text);
-            padding: 0.5rem 1rem;
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-        .logo:hover {
-            background: rgba(74, 222, 128, 0.1);
-        }
-        .logo .mint { color: var(--mint); }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            padding: 0.75rem 1.25rem;
-            border-radius: 12px;
-            font-size: 1rem;
-        }
-
-        .nav-links a:hover { 
-            color: var(--mint);
-            background: rgba(74, 222, 128, 0.1);
-        }
-
-        .btn {
-            background: var(--mint);
-            color: var(--dark);
-            padding: 0.875rem 2rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
-        }
-
-        .btn:hover {
-            background: var(--mint-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 222, 128, 0.5);
-        }
-
-        .btn::after {
-            content: '↑';
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-        }
-
-        .btn:hover::after {
-            transform: translateY(-2px) rotate(45deg);
-        }
-
-        .menu-toggle { display: none; }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 10%;
-            left: -10%;
-            width: 300px;
-            height: 300px;
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 10%;
-            left: 5%;
-            width: 150px;
-            height: 150px;
-            border: 3px solid var(--mint);
-            border-radius: 50%;
-            opacity: 0.2;
-            animation: float 6s ease-in-out infinite reverse;
-        }
-
-        .hero .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 { 
-            margin-bottom: 1.5rem;
-            max-width: 900px;
-        }
-        .hero h1 .outline-text {
-            display: block;
-        }
-        .hero p { 
-            font-size: 1.25rem; 
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            color: var(--gray);
-        }
-        .hero-cta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-
-        .hero-visual {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 500px;
-            height: 500px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(-50%); }
-            50% { transform: translateY(-55%); }
-        }
-
-        .hero-visual .circle {
-            position: absolute;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-        }
-
-        .hero-visual .circle:nth-child(1) {
-            width: 400px;
-            height: 400px;
-            top: 50px;
-            left: 50px;
-            background: rgba(74, 222, 128, 0.05);
-        }
-
-        .hero-visual .circle:nth-child(2) {
-            width: 300px;
-            height: 300px;
-            top: 100px;
-            left: 100px;
-            background: var(--mint);
-            opacity: 0.8;
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .hero-visual .accent {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background: transparent;
-            border: 3px solid var(--mint);
-            border-radius: 50%;
-            opacity: 0.3;
-        }
-
-        .hero-visual .accent:nth-child(3) {
-            top: 0;
-            right: 50px;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        /* Services */
-        .services {
-            background: var(--bg);
-            position: relative;
-        }
-
-        .services::before {
-            content: 'Digital solutions';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: clamp(8rem, 20vw, 15rem);
-            font-weight: 700;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(74, 222, 128, 0.05);
-            text-stroke: 1px rgba(74, 222, 128, 0.05);
-            white-space: nowrap;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .services .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .services-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: end;
-            margin-bottom: 4rem;
-        }
-
-        .services-left h2 {
-            margin-top: 1rem;
-            line-height: 1.1;
-        }
-
-        .services-right {
-            padding-bottom: 0.5rem;
-        }
-
-        .services-right p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-        }
-
-        .services-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .service-item {
-            display: grid;
-            grid-template-columns: 100px 1fr 80px;
-            align-items: center;
-            padding: 3rem 0;
-            border-bottom: 1px solid var(--border);
-            gap: 3rem;
-            transition: all 0.3s;
-        }
-
-        .service-item:hover {
-            padding-left: 1rem;
-        }
-
-        .service-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--mint);
-            opacity: 0.3;
-            transition: all 0.3s;
-        }
-
-        .service-item:hover .service-number {
-            opacity: 1;
-        }
-
-        .service-content h3 {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-            color: var(--text);
-            transition: all 0.3s;
-        }
-
-        .service-content p {
-            font-size: 1rem;
-            color: var(--gray);
-            max-width: 600px;
-        }
-
-        .service-arrow {
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--mint);
-            transition: all 0.3s;
-            margin-left: auto;
-        }
-
-        .service-item:hover .service-arrow {
-            background: var(--mint);
-            color: var(--dark);
-            border-color: var(--mint);
-            transform: rotate(-45deg);
-        }
-
-        /* Process/About Section */
-        .process {
-            background: var(--dark);
-            position: relative;
-            padding: 7rem 0 4rem;
-            overflow: hidden;
-        }
-
-        .process::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, transparent 60%);
-            border-radius: 50%;
-            animation: float 15s ease-in-out infinite;
-            filter: blur(60px);
-        }
-
-        .process::after {
-            content: '';
-            position: absolute;
-            bottom: -10%;
-            left: -5%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 12s ease-in-out infinite reverse;
-            filter: blur(50px);
-        }
-
-        .process .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .process .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(74, 222, 128, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(74, 222, 128, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .about-company {
-            max-width: 700px;
-            margin-bottom: 5rem;
-        }
-
-        .about-company h2 {
-            margin-top: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-company p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-        }
-
-        .read-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .read-more:hover {
-            color: var(--mint);
-            gap: 0.8rem;
-        }
-
-        .web-design-agency {
-            margin-top: 4rem;
-            position: relative;
-        }
-
-        .web-design-agency::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            pointer-events: none;
-        }
-
-        .agency-heading {
-            font-size: clamp(3rem, 10vw, 8rem);
-            line-height: 1;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .agency-heading .solid {
-            color: var(--text);
-        }
-
-        .agency-heading .outline-text {
-            display: inline;
-        }
-
-        /* Launch Section */
-        .launch-section {
-            background: var(--darker);
-            padding: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .launch-section::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: 10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.12) 0%, transparent 60%);
-            border-radius: 50%;
-            filter: blur(70px);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .launch-section::after {
-            content: '';
-            position: absolute;
-            bottom: 20%;
-            left: 5%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: float 10s ease-in-out infinite;
-        }
-
-        .launch-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .launch-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 2.5rem 3rem;
-            border-radius: 20px;
-            background: rgba(15, 23, 42, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(74, 222, 128, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .launch-item:hover {
-            background: rgba(74, 222, 128, 0.08);
-            border-color: rgba(74, 222, 128, 0.3);
-            transform: translateX(10px);
-            box-shadow: 0 8px 32px rgba(74, 222, 128, 0.15);
-        }
-
-        .launch-item h3 {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .launch-arrow {
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--mint);
-            transition: all 0.3s;
-        }
-
-        .launch-item:hover .launch-arrow {
-            background: var(--mint);
-            color: var(--dark);
-            border-color: var(--mint);
-            transform: rotate(45deg);
-        }
-
-        /* Features */
-        .features { background: var(--bg); }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            margin-top: 4rem;
-        }
-
-        .feat-list { display: flex; flex-direction: column; gap: 2.5rem; }
-
-        .feat {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-            padding: 1.5rem;
-            border-radius: 12px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .feat:hover {
-            background: var(--dark);
-        }
-
-        .feat.active {
-            background: var(--dark);
-        }
-
-        .feat-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--dark);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-
-        .feat:hover .feat-icon {
-            background: var(--mint);
-            border-color: var(--mint);
-        }
-
-        .feat:hover .feat-icon svg {
-            stroke: var(--dark);
-        }
-
-        .feat h4 { margin-bottom: 0.5rem; font-size: 1.25rem; color: var(--text); }
-        .feat p { font-size: 0.95rem; }
-
-        .feat-visual {
-            position: relative;
-            height: 500px;
-        }
-
-        .feat-visual .circle {
-            position: absolute;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .feat-visual .circle:nth-child(1) {
-            width: 400px;
-            height: 400px;
-            top: 50px;
-            left: 50px;
-            background: rgba(74, 222, 128, 0.05);
-        }
-
-        .feat-visual .circle:nth-child(2) {
-            width: 300px;
-            height: 300px;
-            top: 100px;
-            left: 100px;
-            border: 3px solid var(--mint);
-            opacity: 0.3;
-        }
-
-        .feat-visual .dot {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: var(--mint);
-            border-radius: 50%;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0.5;
-        }
-
-        .feat-visual .dot:nth-child(3) {
-            top: 50px;
-            right: 50px;
-        }
-
-        .feat-visual .dot:nth-child(4) {
-            bottom: 100px;
-            left: 50px;
-        }
-
-        .feat-visual .dot:nth-child(5) {
-            top: 150px;
-            right: 100px;
-        }
-
-        .feat-visual .dot:nth-child(6) {
-            bottom: 150px;
-            right: 80px;
-        }
-
-        .feat-visual .dot.active {
-            width: 80px;
-            height: 80px;
-            opacity: 1;
-            box-shadow: 0 0 30px rgba(74, 222, 128, 0.6);
-            animation: orbit-pulse 2s ease-in-out infinite;
-        }
-
-        .feat-visual .circle.active {
-            border-color: var(--mint);
-            opacity: 0.8;
-            animation: orbit-rotate 20s linear infinite;
-        }
-
-        @keyframes orbit-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes orbit-rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Stats */
-        .stats-section {
-            background: var(--dark);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, transparent 70%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        .stats-section .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-            text-align: center;
-        }
-
-        .stat {
-            padding: 3rem 2rem;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(74, 222, 128, 0.05) 0%, rgba(74, 222, 128, 0.02) 100%);
-            border: 1px solid rgba(74, 222, 128, 0.2);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .stat::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: all 0.5s;
-        }
-
-        .stat:hover::before {
-            opacity: 1;
-            animation: stat-glow 2s ease-in-out infinite;
-        }
-
-        @keyframes stat-glow {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(10%, 10%) scale(1.1); }
-        }
-
-        .stat:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: var(--mint);
-            box-shadow: 0 20px 60px rgba(74, 222, 128, 0.3);
-            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(74, 222, 128, 0.05) 100%);
-        }
-
-        .stat h3 { 
-            font-size: 4rem; 
-            background: linear-gradient(135deg, var(--mint) 0%, #22c55e 50%, var(--mint) 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            animation: gradient-shift 3s ease infinite;
-            position: relative;
-            z-index: 1;
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .stat:hover h3 {
-            animation: gradient-shift 1.5s ease infinite, number-bounce 0.6s ease;
-        }
-
-        @keyframes number-bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        .stat p { 
-            margin: 0 auto;
-            font-size: 1.125rem;
-            font-weight: 500;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(74, 222, 128, 0.2);
-            transition: all 0.6s ease;
-        }
-
-        .stat:hover::after {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background: var(--dark);
-        }
-
-        .testimonial-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            margin-bottom: 8rem;
-            padding: 3rem;
-            border-radius: 20px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            transition: all 0.4s;
-        }
-
-        .testimonial-item:hover {
-            border-color: var(--mint);
-            box-shadow: 0 20px 60px rgba(74, 222, 128, 0.1);
-        }
-
-        .testimonial-item.reverse {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .testimonial-item.reverse .testimonial-visual {
-            order: 2;
-        }
-
-        .testimonial-item.reverse .testimonial-content {
-            order: 1;
-        }
-
-        .testimonial-visual {
-            position: relative;
-        }
-
-        .project-number {
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            font-size: 6rem;
-            font-weight: 700;
-            color: transparent;
-            -webkit-text-stroke: 2px var(--border);
-            text-stroke: 2px var(--border);
-            z-index: 0;
-        }
-
-        .project-screenshot {
-            position: relative;
-            z-index: 1;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            background: var(--darker);
-            transition: all 0.4s;
-        }
-
-        .testimonial-item:hover .project-screenshot {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .screenshot-placeholder {
-            aspect-ratio: 16/10;
-        }
-
-        .browser-bar {
-            background: #1a1d29;
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .browser-dots {
-            display: flex;
-            gap: 0.4rem;
-        }
-
-        .browser-dots span {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border);
-        }
-
-        .browser-dots span:nth-child(1) { background: #ff5f57; }
-        .browser-dots span:nth-child(2) { background: #ffbd2e; }
-        .browser-dots span:nth-child(3) { background: #28ca42; }
-
-        .browser-url {
-            background: var(--dark);
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            color: var(--gray);
-        }
-
-        .screenshot-content {
-            padding: 2rem;
-        }
-
-        .mock-header {
-            width: 60%;
-            height: 40px;
-            background: linear-gradient(90deg, var(--border) 0%, var(--mint) 50%, var(--border) 100%);
-            background-size: 200% 100%;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            animation: shimmer 2s infinite;
-        }
-
-        .mock-text {
-            width: 100%;
-            height: 12px;
-            background: var(--border);
-            border-radius: 4px;
-            margin-bottom: 0.75rem;
-        }
-
-        .mock-text.short {
-            width: 70%;
-        }
-
-        .mock-button {
-            width: 120px;
-            height: 40px;
-            background: var(--mint);
-            border-radius: 8px;
-            margin-top: 1.5rem;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            color: var(--mint);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.125rem;
-            transition: all 0.3s;
-        }
-
-        .project-link:hover {
-            gap: 0.8rem;
-        }
-
-        .project-link svg {
-            transition: all 0.3s;
-        }
-
-        .project-link:hover svg {
-            transform: rotate(45deg);
-        }
-
-        .testimonial-content {
-            padding: 1rem 0;
-        }
-
-        .testimonial-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .client-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .client-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--mint) 0%, #22c55e 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--dark);
-        }
-
-        .client-info h4 {
-            font-size: 1.25rem;
-            color: var(--text);
-            margin-bottom: 0.25rem;
-        }
-
-        .client-role {
-            font-size: 0.875rem;
-            color: var(--gray);
-        }
-
-        .testimonial-stars {
-            font-size: 1.25rem;
-            color: #fbbf24;
-        }
-
-        blockquote {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--gray);
-            font-style: italic;
-            margin: 0 0 1.5rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-            border-left: 3px solid var(--mint);
-        }
-
-        .testimonial-meta {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .project-tag {
-            padding: 0.5rem 1rem;
-            background: var(--dark);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            font-size: 0.875rem;
-            color: var(--mint);
-        }
-
-        /* CTA Section with Form */
-        .cta-dark {
-            background: linear-gradient(135deg, var(--darker) 0%, var(--bg) 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-dark::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.12) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse 8s ease-in-out infinite;
-            filter: blur(80px);
-        }
-
-        .cta-dark::after {
-            content: '';
-            position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 15s ease-in-out infinite;
-            filter: blur(60px);
-        }
-
-        .cta-dark .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-dark h2 { 
-            color: white; 
-            margin-bottom: 1.5rem; 
-            text-align: center;
-        }
-        
-        .cta-dark > p { 
-            color: var(--gray); 
-            margin: 0 auto 3rem; 
-            font-size: 1.25rem;
-            text-align: center;
-            max-width: 700px;
-        }
-
-        /* NASA-Level Contact Form */
-        .contact-form-wrapper {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .contact-form {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 4rem;
-            border-radius: 24px;
-            border: 1px solid rgba(74, 222, 128, 0.2);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 
-                0 0 60px rgba(74, 222, 128, 0.1),
-                inset 0 0 60px rgba(74, 222, 128, 0.02);
-        }
-
-        .contact-form::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                transparent 0%, 
-                rgba(74, 222, 128, 0.3) 50%, 
-                transparent 100%
-            );
-            border-radius: 24px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.5s;
-            animation: border-glow 3s ease-in-out infinite;
-        }
-
-        @keyframes border-glow {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-        .contact-form:hover::before {
-            opacity: 1;
-        }
-
-        .contact-form::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(74, 222, 128, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(74, 222, 128, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            pointer-events: none;
-            opacity: 0.5;
-        }
-
-        .form-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .form-title h3 {
-            font-size: 2rem;
-            color: var(--text);
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-
-        .form-title p {
-            color: var(--gray);
-            font-size: 1rem;
-            margin: 0 auto;
-            max-width: 500px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            position: relative;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .form-group label::before {
-            content: '';
-            width: 20px;
-            height: 2px;
-            background: var(--mint);
-            opacity: 0.5;
-        }
-
-        .required {
-            color: var(--mint);
-            font-weight: 700;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 1.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            stroke: var(--gray);
-            transition: all 0.3s;
-            pointer-events: none;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            background: rgba(5, 8, 16, 0.8);
-            border: 1px solid rgba(74, 222, 128, 0.2);
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem 1.25rem 3.5rem;
-            color: var(--text);
-            font-size: 1rem;
-            font-family: inherit;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .form-group textarea {
-            padding-left: 1.5rem;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(148, 163, 184, 0.5);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--mint);
-            background: rgba(5, 8, 16, 0.95);
-            box-shadow: 
-                0 0 0 3px rgba(74, 222, 128, 0.1),
-                0 8px 24px rgba(74, 222, 128, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .form-group input:focus + .input-icon,
-        .form-group textarea:focus + .input-icon {
-            stroke: var(--mint);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 140px;
-            line-height: 1.6;
-        }
-
-        .char-count {
-            position: absolute;
-            right: 1rem;
-            bottom: 1rem;
-            font-size: 0.75rem;
-            color: var(--gray);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .form-group textarea:focus ~ .char-count {
-            opacity: 1;
-        }
-
-        .form-submit-btn {
-            width: 100%;
-            margin-top: 2rem;
-            font-size: 1.125rem;
-            padding: 1.5rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            position: relative;
-            overflow: hidden;
-            background: var(--mint);
-            border: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .form-submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .form-submit-btn:hover::before {
-            left: 100%;
-        }
-
-        .form-submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .form-submit-btn:disabled:hover {
-            transform: none;
-        }
-
-        .btn-content {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .btn-loader {
-            display: none;
-            width: 24px;
-            height: 24px;
-        }
-
-        .btn-loader svg {
-            animation: spin 1s linear infinite;
-            stroke: var(--dark);
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .form-submit-btn.loading .btn-text {
-            opacity: 0.5;
-        }
-
-        .form-submit-btn.loading .btn-loader {
-            display: block;
-        }
-
-        /* Success & Error Messages */
-        .form-message {
-            text-align: center;
-            padding: 4rem 3rem;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 1px solid rgba(74, 222, 128, 0.3);
-            position: relative;
-            overflow: hidden;
-            animation: messageSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes messageSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .form-message::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, transparent 70%);
-            animation: messageGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes messageGlow {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(10%, 10%) scale(1.1); }
-        }
-
-        .message-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .success-message .message-icon {
-            stroke: var(--mint);
-            animation: successPop 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes successPop {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .error-message .message-icon {
-            stroke: #ef4444;
-            animation: errorShake 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes errorShake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-
-        .form-message h3 {
-            color: var(--text);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-        }
-
-        .form-message p {
-            color: var(--gray);
-            font-size: 1.125rem;
-            max-width: 500px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-
-        .message-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-
-        .btn-secondary {
-            background: rgba(74, 222, 128, 0.1);
-            color: var(--mint);
-            border: 1px solid var(--mint);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(74, 222, 128, 0.2);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--darker);
-            color: var(--gray);
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 3rem;
-        }
-
-        footer h3 { 
-            color: white; 
-            margin-bottom: 1rem; 
-            font-size: 1.5rem;
-        }
-        footer h3 .mint { color: var(--mint); }
-        footer h4 { color: white; margin-bottom: 1.5rem; }
-        footer p { color: var(--gray); font-size: 0.95rem; }
-        footer ul { list-style: none; }
-        footer li { margin-bottom: 0.75rem; }
-        footer a { 
-            color: var(--gray); 
-            text-decoration: none; 
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        footer a:hover { color: var(--mint); }
-
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.875rem;
-        }
-
-        /* WhatsApp */
-        .wa {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--mint);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(74, 222, 128, 0.4);
-            z-index: 999;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .wa:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(74, 222, 128, 0.6);
-        }
-
-        .wa svg {
-            fill: var(--dark);
-        }
-
-        /* Form Floating Button */
-        .form-float {
-            position: fixed;
-            bottom: 110px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--mint) 0%, #22c55e 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(74, 222, 128, 0.4);
-            z-index: 999;
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .form-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(74, 222, 128, 0.6);
-            animation: none;
-        }
-
-        .form-float svg {
-            stroke: var(--dark);
-            stroke-width: 2.5;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .launch-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .launch-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .launch-arrow {
-                align-self: flex-end;
-            }
-
-            .feat-visual {
-                display: none;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1.25rem;
-            }
-
-            nav {
-                padding: 1rem 1.25rem;
-            }
-
-            .logo {
-                font-size: 1.15rem;
-                padding: 0.4rem 0.8rem;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 75%;
-                max-width: 300px;
-                background: rgba(10, 14, 26, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 5rem 2rem 2rem 2rem;
-                transition: right 0.3s ease;
-                box-shadow: -5px 0 30px rgba(0,0,0,0.5);
-                border-left: 1px solid var(--border);
-                gap: 1.5rem;
-                overflow-y: auto;
-            }
-
-            .nav-links.active { 
-                right: 0; 
-            }
-
-            .nav-links li {
-                width: 100%;
-            }
-
-            .nav-links a {
-                width: 100%;
-                justify-content: flex-start;
-                font-size: 1.125rem;
-            }
-
-            .menu-toggle {
-                display: block;
-                background: none;
-                border: none;
-                cursor: pointer;
-                z-index: 1001;
-                padding: 0.5rem;
-            }
-
-            .menu-toggle span {
-                display: block;
-                width: 25px;
-                height: 2px;
-                background: var(--text);
-                margin: 5px 0;
-                transition: all 0.3s;
-                border-radius: 2px;
-            }
-
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(7px, 7px);
-            }
-
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-
-            h1 { 
-                font-size: 2.25rem;
-                line-height: 1.15;
-            }
-            
-            h2 { 
-                font-size: 1.875rem;
-                line-height: 1.2;
-            }
-
-            .section { 
-                padding: 3.5rem 0; 
-            }
-
-            .hero {
-                min-height: 85vh;
-                padding-top: 4rem;
-            }
-
-            .hero h1 .outline-text {
-                -webkit-text-stroke: 1.5px var(--border);
-            }
-
-            .hero p {
-                font-size: 1.05rem;
-                margin-bottom: 2rem;
-            }
-
-            .hero-visual {
-                display: none;
-            }
-
-            .services::before {
-                font-size: 4rem;
-                opacity: 0.03;
-            }
-
-            .services-header {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                margin-bottom: 2.5rem;
-            }
-
-            .service-item {
-                grid-template-columns: 50px 1fr 50px;
-                gap: 1rem;
-                padding: 2rem 0;
-            }
-
-            .service-item:hover {
-                padding-left: 0.5rem;
-            }
-
-            .service-number {
-                font-size: 1.75rem;
-            }
-
-            .service-content h3 {
-                font-size: 1.35rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .service-content p {
-                font-size: 0.95rem;
-            }
-
-            .service-arrow {
-                width: 50px;
-                height: 50px;
-                font-size: 1.25rem;
-            }
-
-            .agency-heading {
-                font-size: 2.5rem;
-                text-align: center;
-            }
-
-            .launch-item {
-                padding: 2rem 1.5rem;
-            }
-
-            .launch-item h3 {
-                font-size: 1.35rem;
-            }
-
-            .launch-arrow {
-                width: 50px;
-                height: 50px;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .stat {
-                padding: 2.5rem 1.5rem;
-            }
-
-            .stat h3 {
-                font-size: 3rem;
-            }
-
-            .stat p {
-                font-size: 1rem;
-            }
-
-            .testimonial-item {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-                padding: 2rem 1.5rem;
-                margin-bottom: 4rem;
-            }
-
-            .testimonial-item.reverse .testimonial-visual {
-                order: 1;
-            }
-
-            .testimonial-item.reverse .testimonial-content {
-                order: 2;
-            }
-
-            .project-number {
-                font-size: 3.5rem;
-                top: -15px;
-                left: -15px;
-            }
-
-            .client-avatar {
-                width: 50px;
-                height: 50px;
-                font-size: 1.1rem;
-            }
-
-            .client-info h4 {
-                font-size: 1.1rem;
-            }
-
-            blockquote {
-                font-size: 1rem;
-                padding-left: 1rem;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
-            }
-
-            .contact-form {
-                padding: 2.5rem 1.5rem;
-                border-radius: 20px;
-            }
-
-            .form-title h3 {
-                font-size: 1.65rem;
-            }
-
-            .form-title p {
-                font-size: 0.95rem;
-            }
-
-            .form-group input,
-            .form-group textarea {
-                padding: 1.1rem 1.25rem 1.1rem 3.25rem;
-                font-size: 0.95rem;
-            }
-
-            .form-group textarea {
-                padding-left: 1.25rem;
-                min-height: 120px;
-            }
-
-            .form-submit-btn {
-                padding: 1.25rem 1.5rem;
-                font-size: 1rem;
-            }
-
-            .form-message {
-                padding: 3rem 2rem;
-            }
-
-            .form-message h3 {
-                font-size: 2rem;
-            }
-
-            .form-message p {
-                font-size: 1rem;
-            }
-
-            .message-icon {
-                width: 60px;
-                height: 60px;
-            }
-
-            .form-float {
-                bottom: 100px;
-                right: 20px;
-                width: 52px;
-                height: 52px;
-            }
-
-            .form-float svg {
-                width: 24px;
-                height: 24px;
-            }
-
-            .wa {
-                bottom: 20px;
-                right: 20px;
-                width: 52px;
-                height: 52px;
-            }
-
-            .wa svg {
-                width: 28px;
-                height: 28px;
-            }
-
-            .tag {
-                font-size: 0.8rem;
-            }
-
-            .tag::before {
-                width: 20px;
-            }
-
-            p {
-                font-size: 1.05rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            nav {
-                padding: 0.875rem 1rem;
-            }
-
-            .logo {
-                font-size: 1rem;
-            }
-
-            h1 {
-                font-size: 1.875rem;
-            }
-
-            h2 {
-                font-size: 1.625rem;
-            }
-
-            .section {
-                padding: 3rem 0;
-            }
-
-            .hero {
-                min-height: 80vh;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .btn {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.95rem;
-            }
-
-            .service-item {
-                grid-template-columns: 40px 1fr 45px;
-                gap: 0.875rem;
-                padding: 1.75rem 0;
-            }
-
-            .service-number {
-                font-size: 1.5rem;
-            }
-
-            .service-content h3 {
-                font-size: 1.2rem;
-            }
-
-            .service-content p {
-                font-size: 0.9rem;
-            }
-
-            .service-arrow {
-                width: 45px;
-                height: 45px;
-            }
-
-            .contact-form {
-                padding: 2rem 1.25rem;
-            }
-
-            .form-title h3 {
-                font-size: 1.5rem;
-            }
-
-            .stat h3 {
-                font-size: 2.5rem;
-            }
-
-            .launch-item {
-                padding: 1.75rem 1.25rem;
-            }
-
-            .launch-item h3 {
-                font-size: 1.2rem;
-            }
-
-            .project-number {
-                font-size: 3rem;
-            }
-
-            .form-float,
-            .wa {
-                width: 48px;
-                height: 48px;
-            }
-
-            .form-float {
-                bottom: 90px;
-            }
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --dark:#0a0e1a;--darker:#050810;--text:#fff;--gray:#94a3b8;
+            --mint:#4ade80;--mint-hover:#22c55e;--mint-glow:rgba(74,222,128,0.4);
+            --border:#1e293b;--bg:#0f172a;--card:#111827;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',system-ui,sans-serif;color:var(--text);line-height:1.6;background:var(--dark);overflow-x:hidden}
+        .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+        .section{padding:5rem 0}
+        .tag{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mint);font-weight:700;display:inline-flex;align-items:center;gap:.5rem;margin-bottom:.75rem}
+        .tag::before{content:'';width:24px;height:2px;background:var(--mint)}
+        .fade{opacity:0;transform:translateY(25px);transition:all .7s cubic-bezier(.4,0,.2,1)}
+        .fade.visible{opacity:1;transform:translateY(0)}
+
+        /* ===== HEADER ===== */
+        header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,14,26,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;max-width:1200px;margin:0 auto}
+        .logo{font-size:1.4rem;font-weight:800;color:var(--text);letter-spacing:-.02em}
+        .logo .mint{color:var(--mint)}
+        .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+        .nav-links a{color:var(--gray);text-decoration:none;font-weight:500;font-size:.9rem;transition:color .3s}
+        .nav-links a:hover{color:var(--text)}
+        .nav-cta{background:var(--mint);color:var(--dark);padding:.6rem 1.25rem;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;transition:all .3s;animation:gentlePulse 2s ease-in-out infinite}
+        .nav-cta:hover{background:var(--mint-hover);transform:translateY(-1px);box-shadow:0 4px 20px var(--mint-glow)}
+        @keyframes gentlePulse{0%,100%{box-shadow:0 0 0 0 var(--mint-glow)}50%{box-shadow:0 0 0 6px transparent}}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;z-index:1001}
+        .menu-toggle span{display:block;width:22px;height:2px;background:var(--text);margin:5px 0;transition:all .3s}
+
+        /* ===== HERO ===== */
+        .hero{min-height:100vh;display:flex;align-items:center;padding:6rem 0 3rem;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;top:-50%;right:-30%;width:800px;height:800px;background:radial-gradient(circle,rgba(74,222,128,.08)0%,transparent 70%);border-radius:50%;pointer-events:none}
+        .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
+        .hero-left h1{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:1rem}
+        .hero-left h1 .highlight{color:var(--mint);position:relative}
+        .hero-left p{font-size:1.1rem;color:var(--gray);margin-bottom:1.5rem;max-width:500px;line-height:1.7}
+        .hero-trust{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem}
+        .hero-trust span{display:flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--gray)}
+        .hero-trust span svg{width:16px;height:16px;fill:var(--mint)}
+        .hero-trust .stars{color:#fbbf24;font-size:.9rem}
+
+        /* ===== FORM CARD ===== */
+        .form-card{background:rgba(17,24,39,.7);backdrop-filter:blur(20px);border:1px solid rgba(74,222,128,.2);border-radius:16px;padding:2rem;position:relative;overflow:hidden}
+        .form-card::before{content:'';position:absolute;inset:-2px;border-radius:17px;background:linear-gradient(135deg,var(--mint),transparent 40%,transparent 60%,var(--mint));opacity:.3;z-index:-1;animation:borderGlow 3s ease-in-out infinite alternate}
+        @keyframes borderGlow{0%{opacity:.2}100%{opacity:.5}}
+        .form-card h3{font-size:1.3rem;font-weight:700;margin-bottom:.25rem;text-align:center}
+        .form-subtitle{font-size:.85rem;color:var(--gray);text-align:center;margin-bottom:1.25rem}
+        .form-group{margin-bottom:.85rem}
+        .form-group label{display:block;font-size:.8rem;font-weight:600;color:var(--gray);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em}
+        .form-group input,.form-group select{width:100%;padding:.75rem 1rem;background:var(--darker);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:.95rem;font-family:inherit;transition:all .3s;outline:none}
+        .form-group input:focus,.form-group select:focus{border-color:var(--mint);box-shadow:0 0 0 3px rgba(74,222,128,.15)}
+        .form-group input::placeholder{color:#475569}
+        .form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+        .form-group select option{background:var(--dark);color:var(--text)}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+        .submit-btn{width:100%;padding:.9rem;background:var(--mint);color:var(--dark);border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:inherit;margin-top:.5rem}
+        .submit-btn:hover{background:var(--mint-hover);transform:translateY(-2px);box-shadow:0 8px 25px var(--mint-glow)}
+        .form-assurance{display:flex;justify-content:center;gap:1rem;margin-top:.85rem;flex-wrap:wrap}
+        .form-assurance span{font-size:.75rem;color:var(--gray);display:flex;align-items:center;gap:.3rem}
+        .form-assurance span::before{content:'✓';color:var(--mint);font-weight:700}
+
+        /* ===== SOCIAL PROOF BAR ===== */
+        .proof-bar{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 0}
+        .proof-items{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
+        .proof-item{text-align:center}
+        .proof-item .num{font-size:1.75rem;font-weight:800;color:var(--mint)}
+        .proof-item .label{font-size:.8rem;color:var(--gray);margin-top:.15rem}
+
+        /* ===== SERVICES ===== */
+        .services{background:var(--dark)}
+        .section-header{max-width:600px;margin-bottom:3rem}
+        .section-header h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-top:.5rem}
+        .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+        .service-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:all .3s;cursor:pointer;text-decoration:none;display:block}
+        .service-card:hover{border-color:var(--mint);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+        .service-icon{width:48px;height:48px;background:rgba(74,222,128,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+        .service-icon svg{width:24px;height:24px;stroke:var(--mint);fill:none;stroke-width:2}
+        .service-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.5rem;color:var(--text)}
+        .service-card p{font-size:.9rem;color:var(--gray);line-height:1.6;margin-bottom:1rem}
+        .service-link{font-size:.85rem;color:var(--mint);font-weight:600;display:flex;align-items:center;gap:.3rem}
+
+        /* ===== PROCESS ===== */
+        .process{background:var(--bg)}
+        .process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+        .step{text-align:center;padding:2rem 1.5rem;position:relative}
+        .step-num{width:56px;height:56px;background:var(--mint);color:var(--dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.25rem;margin:0 auto 1.25rem}
+        .step h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+        .step p{font-size:.9rem;color:var(--gray)}
+        .step-arrow{position:absolute;right:-1.25rem;top:2.5rem;color:var(--border);font-size:1.5rem}
+        .process-cta{text-align:center;margin-top:2.5rem}
+        .btn{background:var(--mint);color:var(--dark);padding:.85rem 2rem;border-radius:10px;text-decoration:none;font-weight:700;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer;font-size:1rem;font-family:inherit}
+        .btn:hover{background:var(--mint-hover);transform:translateY(-2px);box-shadow:0 6px 25px var(--mint-glow)}
+
+        /* ===== STATS ===== */
+        .stats-section{background:var(--dark)}
+        .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2.5rem}
+        .stat{padding:1.75rem;border-radius:14px;background:var(--card);border:1px solid var(--border);text-align:center;transition:all .3s}
+        .stat:hover{border-color:var(--mint);transform:translateY(-3px)}
+        .stat h3{font-size:2.5rem;color:var(--mint);font-weight:800;margin-bottom:.25rem}
+        .stat p{font-size:.85rem;color:var(--gray);margin:0 auto}
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials{background:var(--bg)}
+        .testimonials-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
+        .testimonial-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:all .3s}
+        .testimonial-card:hover{border-color:rgba(74,222,128,.3)}
+        .tc-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+        .tc-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:var(--dark);flex-shrink:0}
+        .tc-name{font-size:.95rem;font-weight:600}
+        .tc-role{font-size:.8rem;color:var(--gray)}
+        .tc-stars{color:#fbbf24;font-size:.85rem;margin-bottom:.75rem}
+        .tc-quote{font-size:.9rem;color:var(--gray);line-height:1.7;font-style:italic;border-left:2px solid var(--mint);padding-left:1rem}
+        .tc-result{margin-top:1rem;padding:.6rem 1rem;background:rgba(74,222,128,.08);border-radius:8px;font-size:.8rem;color:var(--mint);font-weight:600}
+
+        /* ===== FAQ ===== */
+        .faq{background:var(--dark)}
+        .faq-list{max-width:700px;margin:2.5rem auto 0;display:flex;flex-direction:column;gap:.75rem}
+        .faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .3s}
+        .faq-item.active{border-color:rgba(74,222,128,.3)}
+        .faq-q{padding:1.25rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.95rem;user-select:none;transition:color .3s}
+        .faq-q:hover{color:var(--mint)}
+        .faq-q .icon{transition:transform .3s;color:var(--mint);font-size:1.2rem;flex-shrink:0}
+        .faq-item.active .faq-q .icon{transform:rotate(45deg)}
+        .faq-a{padding:0 1.5rem;max-height:0;overflow:hidden;transition:all .3s ease;color:var(--gray);font-size:.9rem;line-height:1.7}
+        .faq-item.active .faq-a{padding:0 1.5rem 1.25rem;max-height:200px}
+
+        /* ===== BOTTOM CTA ===== */
+        .bottom-cta{background:linear-gradient(135deg,var(--darker)0%,var(--bg)100%);text-align:center;position:relative;overflow:hidden;padding:4rem 0}
+        .bottom-cta::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;background:radial-gradient(circle,rgba(74,222,128,.1)0%,transparent 70%);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
+        .bottom-cta .container{position:relative;z-index:1}
+        .bottom-cta h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;margin-bottom:.75rem}
+        .bottom-cta p{color:var(--gray);font-size:1.1rem;margin:0 auto 1rem;max-width:500px}
+        .urgency{color:#fbbf24;font-size:.9rem;font-weight:600;margin-bottom:1.5rem}
+        .bottom-form{max-width:500px;margin:0 auto}
+
+        /* ===== FOOTER ===== */
+        footer{background:var(--darker);color:var(--gray);padding:3rem 0 1.5rem}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2rem}
+        footer h3{color:white;margin-bottom:.75rem;font-size:1.25rem}
+        footer h3 .mint{color:var(--mint)}
+        footer h4{color:white;margin-bottom:1rem;font-size:.95rem}
+        footer p{color:var(--gray);font-size:.85rem;line-height:1.7}
+        footer ul{list-style:none}
+        footer li{margin-bottom:.5rem}
+        footer a{color:var(--gray);text-decoration:none;transition:color .3s;font-size:.85rem}
+        footer a:hover{color:var(--mint)}
+        .footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;text-align:center;font-size:.8rem}
+
+        /* ===== WHATSAPP ===== */
+        .wa{position:fixed;bottom:25px;right:25px;width:56px;height:56px;background:var(--mint);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px var(--mint-glow);z-index:999;transition:all .3s;cursor:pointer;text-decoration:none;animation:waPulse 2s ease-in-out infinite}
+        .wa:hover{transform:scale(1.1)}
+        .wa svg{fill:var(--dark);width:28px;height:28px}
+        @keyframes waPulse{0%,100%{box-shadow:0 4px 20px var(--mint-glow)}50%{box-shadow:0 4px 30px rgba(74,222,128,.6)}}
+
+        /* ===== STICKY MOBILE CTA ===== */
+        .sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--darker);border-top:1px solid var(--border);padding:.75rem 1rem;z-index:998;text-align:center}
+        .sticky-cta a{display:block;background:var(--mint);color:var(--dark);padding:.75rem;border-radius:10px;font-weight:700;font-size:.95rem;text-decoration:none}
+
+        /* ===== SCROLL CTA (Desktop) ===== */
+        .scroll-cta{position:fixed;bottom:25px;left:25px;background:var(--mint);color:var(--dark);padding:.7rem 1.25rem;border-radius:10px;font-weight:700;font-size:.85rem;text-decoration:none;z-index:998;opacity:0;transform:translateY(20px);transition:all .3s;pointer-events:none;box-shadow:0 4px 15px var(--mint-glow)}
+        .scroll-cta.show{opacity:1;transform:translateY(0);pointer-events:auto}
+        .scroll-cta:hover{background:var(--mint-hover);transform:translateY(-2px)}
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:768px){
+            .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:70%;background:var(--dark);flex-direction:column;padding:5rem 2rem;transition:all .3s;box-shadow:-5px 0 20px rgba(0,0,0,.5);border-left:1px solid var(--border)}
+            .nav-links.active{right:0}
+            .menu-toggle{display:block}
+            .hero{padding:5rem 0 2rem;min-height:auto}
+            .hero-grid{grid-template-columns:1fr;gap:2rem}
+            .services-grid{grid-template-columns:1fr}
+            .process-steps{grid-template-columns:1fr;gap:1rem}
+            .step-arrow{display:none}
+            .stats{grid-template-columns:1fr 1fr}
+            .testimonials-grid{grid-template-columns:1fr}
+            .footer-grid{grid-template-columns:1fr}
+            .form-row{grid-template-columns:1fr}
+            .scroll-cta{display:none!important}
+            .sticky-cta{display:block}
+            .wa{bottom:70px}
+            .proof-items{gap:1.5rem}
+            .section{padding:3.5rem 0}
         }
     </style>
 </head>
@@ -2130,500 +198,299 @@
             <div class="logo">LEADVATE<span class="mint">.ONLINE</span></div>
             <ul class="nav-links" id="nav">
                 <li><a href="#services">Services</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#features">Benefits</a></li>
-                <li><a href="#contact">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 0.3rem;">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="9" y1="3" x2="9" y2="21"></line>
-                        <line x1="3" y1="9" x2="21" y2="9"></line>
-                    </svg>
-                    Form
-                </a></li>
-                <li><a href="#contact" class="btn">Let's Talk</a></li>
+                <li><a href="#process">How It Works</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#lead-form" class="nav-cta">Get Free Strategy Call</a></li>
             </ul>
-            <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+            <button class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('active')">
                 <span></span><span></span><span></span>
             </button>
         </nav>
     </header>
 
-    <section class="hero section">
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="lead-form">
         <div class="container">
-            <div class="hero-content fade">
-                <h1>
-                    AI-POWERED <span class="outline-text">LEAD GENERATION</span> WEBSITES
-                </h1>
-                <p>Build conversion-focused websites powered by AI automation. Turn traffic into qualified leads while you focus on growing your business.</p>
-                <div class="hero-cta">
-                    <a href="https://wa.me/917975456174" class="btn">Build Your Lead Engine</a>
+            <div class="hero-grid">
+                <div class="hero-left fade">
+                    <span class="tag">AI-Powered Lead Generation</span>
+                    <h1>Get <span class="highlight">3x More Leads</span> from Your Website — Starting in 7 Days</h1>
+                    <p>We build conversion-focused websites with AI automation that capture, qualify, and follow up with leads 24/7 — so you can focus on closing deals.</p>
+                    <div class="hero-trust">
+                        <span class="stars">★★★★★</span>
+                        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> 50+ businesses helped</span>
+                        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Results in 7 days</span>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="accent"></div>
+                <div class="form-card fade" id="hero-form">
+                    <h3>Get Your Free Strategy Call</h3>
+                    <p class="form-subtitle">Find out how we can 3x your leads — no obligation</p>
+                    <form id="leadForm" onsubmit="handleSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone" placeholder="+91 98765 43210" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Business Type</label>
+                            <select name="business" required>
+                                <option value="" disabled selected>Select your industry</option>
+                                <option>E-Commerce / Retail</option>
+                                <option>Real Estate</option>
+                                <option>Healthcare / Clinic</option>
+                                <option>Education / Coaching</option>
+                                <option>SaaS / Tech</option>
+                                <option>Agency / Consulting</option>
+                                <option>Fitness / Wellness</option>
+                                <option>Restaurant / Food</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Website URL <span style="font-weight:400;text-transform:none">(optional)</span></label>
+                            <input type="url" name="website" placeholder="https://yourwebsite.com">
+                        </div>
+                        <button type="submit" class="submit-btn">Get My Free Strategy Call →</button>
+                    </form>
+                    <div class="form-assurance">
+                        <span>No obligation</span>
+                        <span>100% free</span>
+                        <span>Reply within 2 hrs</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- ===== SOCIAL PROOF BAR ===== -->
+    <section class="proof-bar">
+        <div class="container">
+            <div class="proof-items fade">
+                <div class="proof-item"><div class="num">50+</div><div class="label">Websites Built</div></div>
+                <div class="proof-item"><div class="num">₹2Cr+</div><div class="label">Revenue Generated for Clients</div></div>
+                <div class="proof-item"><div class="num">4.9★</div><div class="label">Google Rating</div></div>
+                <div class="proof-item"><div class="num">24/7</div><div class="label">AI Lead Capture</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
     <section id="services" class="services section">
         <div class="container">
-            <div class="services-header fade">
-                <div class="services-left">
-                    <span class="tag">What We Do</span>
-                    <h2>Services Built<br>For Growth</h2>
-                </div>
-                <div class="services-right">
-                    <p>We combine websites and AI automation to create complete lead generation systems that work 24/7 to grow your business.</p>
-                </div>
+            <div class="section-header fade">
+                <span class="tag">What We Do</span>
+                <h2>Services Built for Growth</h2>
             </div>
-            
-            <div class="services-list">
-                <div class="service-item fade">
-                    <div class="service-number">01</div>
-                    <div class="service-content">
-                        <h3>Conversion-Focused Websites</h3>
-                        <p>Fast, mobile-optimized websites designed to convert visitors into leads. Every element is strategically placed to drive action.</p>
-                    </div>
-                    <div class="service-arrow">→</div>
-                </div>
-
-                <div class="service-item fade">
-                    <div class="service-number">02</div>
-                    <div class="service-content">
-                        <h3>AI Chatbots</h3>
-                        <p>Intelligent chatbots that qualify leads 24/7. Answer questions instantly and capture contact information while you sleep.</p>
-                    </div>
-                    <div class="service-arrow">→</div>
-                </div>
-
-                <div class="service-item fade">
-                    <div class="service-number">03</div>
-                    <div class="service-content">
-                        <h3>AI Automation</h3>
-                        <p>Automated follow-ups via WhatsApp, email, and CRM. Turn cold leads into warm conversations without manual work.</p>
-                    </div>
-                    <div class="service-arrow">→</div>
-                </div>
-
-                <div class="service-item fade">
-                    <div class="service-number">04</div>
-                    <div class="service-content">
-                        <h3>Lead Funnel Optimization</h3>
-                        <p>Data-driven improvements to your funnel. We analyze, test, and optimize every touchpoint for maximum conversions.</p>
-                    </div>
-                    <div class="service-arrow">→</div>
-                </div>
+            <div class="services-grid">
+                <a href="#lead-form" class="service-card fade">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                    <h3>Conversion-Focused Websites</h3>
+                    <p>Fast, mobile-optimized websites designed to convert visitors into leads. Every element strategically placed to drive action.</p>
+                    <span class="service-link">Get Started Free →</span>
+                </a>
+                <a href="#lead-form" class="service-card fade">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                    <h3>AI Chatbots</h3>
+                    <p>Intelligent chatbots that qualify leads 24/7. Answer questions instantly and capture contact info while you sleep.</p>
+                    <span class="service-link">Get Started Free →</span>
+                </a>
+                <a href="#lead-form" class="service-card fade">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+                    <h3>AI Automation</h3>
+                    <p>Automated follow-ups via WhatsApp, email, and CRM. Turn cold leads into warm conversations without manual work.</p>
+                    <span class="service-link">Get Started Free →</span>
+                </a>
+                <a href="#lead-form" class="service-card fade">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                    <h3>Lead Funnel Optimization</h3>
+                    <p>Data-driven improvements to your funnel. We analyze, test, and optimize every touchpoint for maximum conversions.</p>
+                    <span class="service-link">Get Started Free →</span>
+                </a>
             </div>
         </div>
     </section>
 
+    <!-- ===== HOW IT WORKS ===== -->
     <section id="process" class="process section">
         <div class="container">
-            <div class="about-company fade">
-                <span class="tag">About Company</span>
-                <h2>Our Main Goal to Satisfied Local & Global Clients</h2>
-                <p style="margin-top: 1.5rem; max-width: 600px;">At <strong>Leadvate</strong>, we understand that your online presence is more than just code and graphics; it's the digital heartbeat of your brand. That's why we specialize in creating custom web solutions tailored to your unique needs.</p>
-                <a href="#contact" class="read-more">Read More →</a>
+            <div class="section-header fade" style="text-align:center;margin-left:auto;margin-right:auto">
+                <span class="tag">How It Works</span>
+                <h2>3 Steps to More Leads</h2>
             </div>
-
-            <div class="web-design-agency fade">
-                <h2 class="agency-heading">
-                    <span class="solid">WEB</span> <span class="outline-text">DESIGN</span><br>
-                    <span class="solid">AGENCY</span>
-                </h2>
+            <div class="process-steps">
+                <div class="step fade">
+                    <div class="step-num">1</div>
+                    <h3>Book a Free Call</h3>
+                    <p>Tell us about your business. We'll audit your current setup and identify the biggest growth opportunities.</p>
+                    <span class="step-arrow">→</span>
+                </div>
+                <div class="step fade">
+                    <div class="step-num">2</div>
+                    <h3>We Build Your Lead Engine</h3>
+                    <p>Our team builds your conversion-focused website with AI chatbot and automation — launched in 7 days.</p>
+                    <span class="step-arrow">→</span>
+                </div>
+                <div class="step fade">
+                    <div class="step-num">3</div>
+                    <h3>Watch Leads Roll In</h3>
+                    <p>Your new system captures and qualifies leads 24/7. You focus on closing deals while AI handles the rest.</p>
+                </div>
+            </div>
+            <div class="process-cta fade">
+                <a href="#lead-form" class="btn">Start Step 1 — It's Free →</a>
             </div>
         </div>
     </section>
 
-    <section class="launch-section section">
+    <!-- ===== STATS ===== -->
+    <section id="results" class="stats-section section">
         <div class="container">
-            <div class="launch-grid">
-                <div class="launch-item fade">
-                    <h3>Launch and Deployment</h3>
-                    <div class="launch-arrow">→</div>
-                </div>
-                <div class="launch-item fade">
-                    <h3>Maintenance and Updates</h3>
-                    <div class="launch-arrow">→</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="features section">
-        <div class="container">
-            <div class="fade">
-                <span class="tag">Why Leadvate</span>
-                <h2>Built For Results</h2>
-            </div>
-
-            <div class="features-grid">
-                <div class="feat-list">
-                    <div class="feat fade active" data-index="0">
-                        <div class="feat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Qualified Leads</h4>
-                            <p>AI qualification filters out tire-kickers, so you only talk to serious prospects ready to buy.</p>
-                        </div>
-                    </div>
-
-                    <div class="feat fade" data-index="1">
-                        <div class="feat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>24/7 Lead Capture</h4>
-                            <p>Never miss a lead again. Our systems work around the clock, even when you're offline.</p>
-                        </div>
-                    </div>
-
-                    <div class="feat fade" data-index="2">
-                        <div class="feat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Scale Without Hiring</h4>
-                            <p>Automation handles repetitive tasks, allowing your team to focus on closing deals.</p>
-                        </div>
-                    </div>
-
-                    <div class="feat fade" data-index="3">
-                        <div class="feat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Higher ROI</h4>
-                            <p>Increase conversions and reduce cost per lead with optimized funnels and automation.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="feat-visual fade">
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="dot" data-feature="0"></div>
-                    <div class="dot" data-feature="1"></div>
-                    <div class="dot" data-feature="2"></div>
-                    <div class="dot" data-feature="3"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="stats-section section">
-        <div class="container">
-            <div class="fade" style="text-align: center; margin-bottom: 3rem;">
+            <div class="section-header fade" style="text-align:center;margin-left:auto;margin-right:auto">
                 <span class="tag">Proven Results</span>
-                <h2>Numbers That Matter</h2>
+                <h2>Average Results Across 50+ Client Websites</h2>
             </div>
-
             <div class="stats">
-                <div class="stat fade">
-                    <h3>3x</h3>
-                    <p>Average increase in qualified leads</p>
-                </div>
-                <div class="stat fade">
-                    <h3>24/7</h3>
-                    <p>Lead capture and qualification</p>
-                </div>
-                <div class="stat fade">
-                    <h3>40%</h3>
-                    <p>Reduction in cost per lead</p>
-                </div>
-                <div class="stat fade">
-                    <h3>10hrs</h3>
-                    <p>Saved per week on manual follow-ups</p>
-                </div>
+                <div class="stat fade"><h3>3x</h3><p>Increase in qualified leads</p></div>
+                <div class="stat fade"><h3>24/7</h3><p>Lead capture & qualification</p></div>
+                <div class="stat fade"><h3>40%</h3><p>Reduction in cost per lead</p></div>
+                <div class="stat fade"><h3>10hrs</h3><p>Saved per week on follow-ups</p></div>
             </div>
         </div>
     </section>
 
+    <!-- ===== TESTIMONIALS ===== -->
     <section class="testimonials section">
         <div class="container">
-            <div class="fade" style="margin-bottom: 4rem;">
-                <span class="tag">Recent Works Gallery</span>
-                <h2>Let's Look Our Recent<br>Project Gallery</h2>
+            <div class="section-header fade">
+                <span class="tag">Client Results</span>
+                <h2>What Our Clients Say</h2>
             </div>
-
-            <div class="testimonial-item fade">
-                <div class="testimonial-visual">
-                    <div class="project-number">01</div>
-                    <div class="project-screenshot">
-                        <div class="screenshot-placeholder">
-                            <div class="browser-bar">
-                                <div class="browser-dots">
-                                    <span></span><span></span><span></span>
-                                </div>
-                                <div class="browser-url">techflow.io</div>
-                            </div>
-                            <div class="screenshot-content">
-                                <div class="mock-header"></div>
-                                <div class="mock-text"></div>
-                                <div class="mock-text short"></div>
-                                <div class="mock-button"></div>
-                            </div>
-                        </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background:linear-gradient(135deg,var(--mint),#22c55e)">JD</div>
+                        <div><div class="tc-name">James Davidson</div><div class="tc-role">CEO, TechFlow Solutions</div></div>
                     </div>
-                    <a href="#" class="project-link">
-                        TechFlow
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </a>
+                    <div class="tc-stars">★★★★★</div>
+                    <div class="tc-quote">"Leadvate transformed our online presence. The AI website generates qualified leads 24/7. Our conversion rate increased by 340% in 3 months."</div>
+                    <div class="tc-result">📈 Result: 340% increase in conversions</div>
                 </div>
-                <div class="testimonial-content">
-                    <div class="testimonial-header">
-                        <div class="client-info">
-                            <div class="client-avatar">
-                                <span>JD</span>
-                            </div>
-                            <div>
-                                <h4>James Davidson</h4>
-                                <p class="client-role">CEO, TechFlow Solutions</p>
-                            </div>
-                        </div>
-                        <div class="testimonial-stars">★★★★★</div>
+                <div class="testimonial-card fade">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">SM</div>
+                        <div><div class="tc-name">Sarah Martinez</div><div class="tc-role">Founder, GrowthLab Marketing</div></div>
                     </div>
-                    <blockquote>
-                        "Leadvate transformed our online presence completely. The AI-powered website they built generates qualified leads 24/7. Our conversion rate increased by 340% in just 3 months. The automation saves our team 15+ hours per week."
-                    </blockquote>
-                    <div class="testimonial-meta">
-                        <span class="project-tag">E-Commerce</span>
-                        <span class="project-tag">AI Chatbot</span>
-                    </div>
+                    <div class="tc-stars">★★★★★</div>
+                    <div class="tc-quote">"We went from 20 leads/month to over 200 qualified leads. The chatbot handles initial conversations perfectly."</div>
+                    <div class="tc-result">📈 Result: 10x more qualified leads</div>
                 </div>
-            </div>
-
-            <div class="testimonial-item reverse fade">
-                <div class="testimonial-content">
-                    <div class="testimonial-header">
-                        <div class="client-info">
-                            <div class="client-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                                <span>SM</span>
-                            </div>
-                            <div>
-                                <h4>Sarah Martinez</h4>
-                                <p class="client-role">Founder, GrowthLab Marketing</p>
-                            </div>
-                        </div>
-                        <div class="testimonial-stars">★★★★★</div>
+                <div class="testimonial-card fade">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">MR</div>
+                        <div><div class="tc-name">Michael Roberts</div><div class="tc-role">Director, Urban Fitness Centers</div></div>
                     </div>
-                    <blockquote>
-                        "The lead generation system Leadvate created is pure magic. We went from 20 leads per month to over 200 qualified leads. The chatbot handles initial conversations perfectly, and the follow-up automation is seamless."
-                    </blockquote>
-                    <div class="testimonial-meta">
-                        <span class="project-tag">SaaS Platform</span>
-                        <span class="project-tag">Marketing Automation</span>
-                    </div>
+                    <div class="tc-stars">★★★★★</div>
+                    <div class="tc-quote">"Best investment this year. The website converts visitors into gym members automatically. 280% ROI in 6 months."</div>
+                    <div class="tc-result">📈 Result: 280% ROI in 6 months</div>
                 </div>
-                <div class="testimonial-visual">
-                    <div class="project-number">02</div>
-                    <div class="project-screenshot">
-                        <div class="screenshot-placeholder">
-                            <div class="browser-bar">
-                                <div class="browser-dots">
-                                    <span></span><span></span><span></span>
-                                </div>
-                                <div class="browser-url">growthlabmarketing.com</div>
-                            </div>
-                            <div class="screenshot-content">
-                                <div class="mock-header"></div>
-                                <div class="mock-text"></div>
-                                <div class="mock-text short"></div>
-                                <div class="mock-button"></div>
-                            </div>
-                        </div>
+                <div class="testimonial-card fade">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background:linear-gradient(135deg,#f97316,#ef4444)">RP</div>
+                        <div><div class="tc-name">Rahul Patel</div><div class="tc-role">Owner, Patel Real Estate</div></div>
                     </div>
-                    <a href="#" class="project-link">
-                        GrowthLab
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <div class="testimonial-item fade">
-                <div class="testimonial-visual">
-                    <div class="project-number">03</div>
-                    <div class="project-screenshot">
-                        <div class="screenshot-placeholder">
-                            <div class="browser-bar">
-                                <div class="browser-dots">
-                                    <span></span><span></span><span></span>
-                                </div>
-                                <div class="browser-url">urbanfitness.io</div>
-                            </div>
-                            <div class="screenshot-content">
-                                <div class="mock-header"></div>
-                                <div class="mock-text"></div>
-                                <div class="mock-text short"></div>
-                                <div class="mock-button"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="project-link">
-                        Urban Fitness
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </a>
-                </div>
-                <div class="testimonial-content">
-                    <div class="testimonial-header">
-                        <div class="client-info">
-                            <div class="client-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                <span>MR</span>
-                            </div>
-                            <div>
-                                <h4>Michael Roberts</h4>
-                                <p class="client-role">Director, Urban Fitness Centers</p>
-                            </div>
-                        </div>
-                        <div class="testimonial-stars">★★★★★</div>
-                    </div>
-                    <blockquote>
-                        "Best investment we made this year. The website converts visitors into gym members automatically. The AI assistant answers questions about pricing and schedules instantly. We've seen a 280% ROI in 6 months."
-                    </blockquote>
-                    <div class="testimonial-meta">
-                        <span class="project-tag">Fitness & Wellness</span>
-                        <span class="project-tag">Booking System</span>
-                    </div>
+                    <div class="tc-stars">★★★★★</div>
+                    <div class="tc-quote">"The AI follow-up system is incredible. Every enquiry gets instant response. We close 60% more deals now."</div>
+                    <div class="tc-result">📈 Result: 60% more deals closed</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="cta-dark section">
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="faq section">
+        <div class="container">
+            <div class="section-header fade" style="text-align:center;margin-left:auto;margin-right:auto">
+                <span class="tag">Common Questions</span>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item fade">
+                    <div class="faq-q" onclick="toggleFaq(this)">How much does it cost? <span class="icon">+</span></div>
+                    <div class="faq-a">We offer customized solutions based on your business needs. On the free strategy call, we'll understand your goals and recommend the right package. Our pricing is designed to deliver ROI within the first month.</div>
+                </div>
+                <div class="faq-item fade">
+                    <div class="faq-q" onclick="toggleFaq(this)">How long does it take to launch? <span class="icon">+</span></div>
+                    <div class="faq-a">Most websites launch within 7 days. Complex projects with custom AI integrations may take 10–14 days. We move fast because we know every day without a lead engine is money left on the table.</div>
+                </div>
+                <div class="faq-item fade">
+                    <div class="faq-q" onclick="toggleFaq(this)">What if I already have a website? <span class="icon">+</span></div>
+                    <div class="faq-a">No problem! We can either optimize your existing website for conversions or build a fresh one. On the strategy call, we'll audit your current site and recommend the best approach.</div>
+                </div>
+                <div class="faq-item fade">
+                    <div class="faq-q" onclick="toggleFaq(this)">Do I need to be tech-savvy? <span class="icon">+</span></div>
+                    <div class="faq-a">Not at all. We handle everything — design, development, AI setup, and automation. You just tell us about your business, and we take care of the rest. We also provide simple training so you can manage leads easily.</div>
+                </div>
+                <div class="faq-item fade">
+                    <div class="faq-q" onclick="toggleFaq(this)">What kind of results can I expect? <span class="icon">+</span></div>
+                    <div class="faq-a">On average, our clients see a 3x increase in qualified leads within the first 90 days. Results vary by industry, but we design every system with one goal: maximum ROI for your business.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BOTTOM CTA WITH FORM ===== -->
+    <section id="contact" class="bottom-cta section">
         <div class="container fade">
-            <h2>Ready to Build Your Lead Engine?</h2>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">Let's create a website and AI system that generates leads while you sleep. Fill out the form below and we'll reach out ASAP.</p>
-            
-            <div class="contact-form-wrapper">
-                <form id="contactForm" class="contact-form">
-                    <div class="form-title">
-                        <h3>Get Started Today</h3>
-                        <p>Share your details and we'll be in touch within 24 hours</p>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>
-                                Full Name <span class="required">*</span>
-                            </label>
-                            <div class="input-wrapper">
-                                <input type="text" id="name" name="name" required placeholder="John Doe" autocomplete="name">
-                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                </svg>
+            <h2>Ready to <span style="color:var(--mint)">3x Your Leads</span>?</h2>
+            <p>Let's build a website and AI system that generates leads while you sleep.</p>
+            <p class="urgency">⚡ We only take 5 new clients per month — limited spots available</p>
+            <div class="bottom-form">
+                <div class="form-card" style="border-color:rgba(74,222,128,.3)">
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone" placeholder="+91 98765 43210" required>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label>
-                                Phone Number <span class="required">*</span>
-                            </label>
-                            <div class="input-wrapper">
-                                <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210" autocomplete="tel">
-                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                </svg>
-                            </div>
+                            <label>Business Type</label>
+                            <select name="business" required>
+                                <option value="" disabled selected>Select your industry</option>
+                                <option>E-Commerce / Retail</option>
+                                <option>Real Estate</option>
+                                <option>Healthcare / Clinic</option>
+                                <option>Education / Coaching</option>
+                                <option>SaaS / Tech</option>
+                                <option>Agency / Consulting</option>
+                                <option>Fitness / Wellness</option>
+                                <option>Restaurant / Food</option>
+                                <option>Other</option>
+                            </select>
                         </div>
-
-                        <div class="form-group">
-                            <label>
-                                Email Address <span class="required">*</span>
-                            </label>
-                            <div class="input-wrapper">
-                                <input type="email" id="email" name="email" required placeholder="john@example.com" autocomplete="email">
-                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>
-                                Your Niche/Industry <span class="required">*</span>
-                            </label>
-                            <div class="input-wrapper">
-                                <input type="text" id="niche" name="niche" required placeholder="E.g., Real Estate, SaaS, Coaching">
-                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div class="form-group full-width">
-                            <label>
-                                Additional Information
-                            </label>
-                            <textarea id="additional" name="additional" rows="4" placeholder="Tell us about your business goals, challenges, or any specific requirements..." maxlength="500"></textarea>
-                            <span class="char-count" id="charCount">0/500</span>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn form-submit-btn">
-                        <span class="btn-content">
-                            <span class="btn-text">Submit Inquiry</span>
-                            <span class="btn-loader">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                </svg>
-                            </span>
-                        </span>
-                    </button>
-                </form>
-
-                <div id="formSuccess" class="form-message success-message" style="display: none;">
-                    <svg class="message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
-                    <h3>Thank You!</h3>
-                    <p>We've received your information and will reach out to you as soon as possible. Expect to hear from us within 24 hours!</p>
-                    <div class="message-actions">
-                        <a href="https://wa.me/917975456174" class="btn">Chat on WhatsApp</a>
-                        <button onclick="location.reload()" class="btn btn-secondary">Submit Another</button>
-                    </div>
-                </div>
-
-                <div id="formError" class="form-message error-message" style="display: none;">
-                    <svg class="message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="15" y1="9" x2="9" y2="15"/>
-                        <line x1="9" y1="9" x2="15" y2="15"/>
-                    </svg>
-                    <h3>Oops!</h3>
-                    <p>Something went wrong while submitting your form. Please try again or contact us directly via WhatsApp.</p>
-                    <div class="message-actions">
-                        <a href="https://wa.me/917975456174" class="btn">Chat on WhatsApp</a>
-                        <button onclick="location.reload()" class="btn btn-secondary">Try Again</button>
+                        <button type="submit" class="submit-btn">Book My Free Strategy Call →</button>
+                    </form>
+                    <div class="form-assurance">
+                        <span>No obligation</span>
+                        <span>100% free</span>
+                        <span>Reply within 2 hrs</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ===== FOOTER ===== -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -2635,184 +502,89 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#process">Process</a></li>
-                        <li><a href="#features">Benefits</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#process">How It Works</a></li>
+                        <li><a href="#results">Results</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#lead-form">Free Strategy Call</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Get Started</h4>
+                    <h4>Get In Touch</h4>
                     <ul>
-                        <li><a href="https://wa.me/917975456174">+91 7975456174 ↑</a></li>
-                        <li><a href="mailto:hello@leadvate.com">hello@leadvate.com ↑</a></li>
+                        <li><a href="https://wa.me/917975456174">+91 7975456174</a></li>
+                        <li><a href="mailto:hello@leadvate.com">hello@leadvate.com</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                © 2025 Leadvate. All rights reserved.
-            </div>
+            <div class="footer-bottom">© 2025 Leadvate. All rights reserved.</div>
         </div>
     </footer>
 
-    <a href="https://wa.me/917975456174" class="wa">
-        <svg width="32" height="32" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-        </svg>
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/917975456174" class="wa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
 
-    <a href="#contact" class="form-float">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10 9 9 9 8 9"></polyline>
-        </svg>
-    </a>
+    <!-- Sticky Mobile CTA -->
+    <div class="sticky-cta"><a href="#lead-form">Get Free Strategy Call ↑</a></div>
+
+    <!-- Desktop Scroll CTA -->
+    <a href="#lead-form" class="scroll-cta" id="scrollCta">📞 Book Free Call</a>
 
     <script>
-        // Toggle mobile menu
-        function toggleMenu() {
-            const nav = document.getElementById('nav');
-            const menuToggle = document.getElementById('menuToggle');
-            nav.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        }
-
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('nav').classList.remove('active');
-                document.getElementById('menuToggle').classList.remove('active');
-            });
-        });
-
         // Scroll animations
-        const obs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
-        // Header scroll effect
-        let lastScroll = 0;
+        // Header scroll effect + desktop scroll CTA
+        const scrollCta = document.getElementById('scrollCta');
+        const heroForm = document.getElementById('hero-form');
         window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
             const header = document.querySelector('header');
-            
-            if (currentScroll > 50) {
-                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
-            } else {
-                header.style.boxShadow = 'none';
+            header.style.boxShadow = window.pageYOffset > 50 ? '0 4px 20px rgba(0,0,0,.3)' : 'none';
+            // Show desktop CTA after scrolling past hero form
+            if (heroForm) {
+                const rect = heroForm.getBoundingClientRect();
+                scrollCta.classList.toggle('show', rect.bottom < 0);
             }
-            
-            lastScroll = currentScroll;
         });
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                const t = document.querySelector(this.getAttribute('href'));
+                if (t) { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); document.getElementById('nav').classList.remove('active'); }
             });
         });
 
-        // Feature orbit animation
-        const featureItems = document.querySelectorAll('.feat');
-        const orbitDots = document.querySelectorAll('.feat-visual .dot');
-        const orbitCircles = document.querySelectorAll('.feat-visual .circle');
-
-        featureItems.forEach((item, index) => {
-            item.addEventListener('mouseenter', () => {
-                featureItems.forEach(f => f.classList.remove('active'));
-                orbitDots.forEach(d => d.classList.remove('active'));
-                orbitCircles.forEach(c => c.classList.remove('active'));
-
-                item.classList.add('active');
-                if (orbitDots[index]) {
-                    orbitDots[index].classList.add('active');
-                }
-                orbitCircles.forEach(c => c.classList.add('active'));
-            });
-        });
-
-        if (orbitDots[0]) {
-            orbitDots[0].classList.add('active');
-            orbitCircles.forEach(c => c.classList.add('active'));
+        // FAQ Toggle
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('active'); });
+            item.classList.toggle('active');
         }
 
-        // Character counter
-        const textarea = document.getElementById('additional');
-        const charCount = document.getElementById('charCount');
-        
-        if (textarea && charCount) {
-            textarea.addEventListener('input', () => {
-                charCount.textContent = `${textarea.value.length}/500`;
-            });
-        }
-
-        // Contact Form Submission
-        const contactForm = document.getElementById('contactForm');
-        const formSuccess = document.getElementById('formSuccess');
-        const formError = document.getElementById('formError');
-
-        if (contactForm) {
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const submitBtn = contactForm.querySelector('.form-submit-btn');
-                
-                // Disable button and show loader
-                submitBtn.disabled = true;
-                submitBtn.classList.add('loading');
-                
-                // Get form data
-                const formData = {
-                    name: document.getElementById('name').value,
-                    phone: document.getElementById('phone').value,
-                    email: document.getElementById('email').value,
-                    niche: document.getElementById('niche').value,
-                    additional: document.getElementById('additional').value
-                };
-                
-                try {
-                    const scriptURL = 'https://script.google.com/macros/s/AKfycbyR-7l-J6MHZgiRVKPm8K-F-7hCrO9M7RDCjtU2oV5CurBgwqxzB1rQhX2-vcIGPHo5oQ/exec';
-                    
-                    const response = await fetch(scriptURL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formData)
-                    });
-                    
-                    // Since mode is 'no-cors', we won't get a readable response
-                    // Assume success after sending
-                    contactForm.style.display = 'none';
-                    formSuccess.style.display = 'block';
-                    contactForm.reset();
-                    
-                } catch (error) {
-                    console.error('Error:', error);
-                    contactForm.style.display = 'none';
-                    formError.style.display = 'block';
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('loading');
-                }
-            });
+        // Form Submit
+        function handleSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            const name = data.get('name');
+            const phone = data.get('phone');
+            const business = data.get('business');
+            const website = data.get('website') || 'Not provided';
+            // WhatsApp redirect with form details
+            const msg = encodeURIComponent(`Hi! I'd like a free strategy call.\n\nName: ${name}\nPhone: ${phone}\nBusiness: ${business}\nWebsite: ${website}`);
+            window.open(`https://wa.me/917975456174?text=${msg}`, '_blank');
+            // Show success
+            const btn = form.querySelector('.submit-btn');
+            btn.textContent = '✓ Sent! We\'ll reach out shortly';
+            btn.style.background = '#22c55e';
+            setTimeout(() => { btn.textContent = 'Get My Free Strategy Call →'; btn.style.background = ''; }, 3000);
         }
     </script>
 </body>
-</html> 
+</html>
