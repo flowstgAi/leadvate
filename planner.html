@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner — Calendar & CRM</title>
+    <meta name="description"
+        content="A clean, Apple-inspired dark-themed calendar, task tracker, and mini CRM application.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reminder app/style.css">
+    <style>
+        /* Back to site button */
+        .back-to-site {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-family: inherit;
+            width: 100%;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        .back-to-site:hover {
+            background: rgba(255, 69, 58, 0.12);
+            color: var(--marker-red);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="3" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+            </div>
+            <span class="brand-name">Planner</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button class="nav-btn active" data-view="calendar" id="nav-calendar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                <span>Calendar</span>
+            </button>
+            <button class="nav-btn" data-view="goals" id="nav-goals">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                </svg>
+                <span>Monthly Goals</span>
+            </button>
+            <button class="nav-btn" data-view="crm" id="nav-crm">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <span>CRM</span>
+            </button>
+            <button class="nav-btn" data-view="colddm" id="nav-colddm">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                <span>Cold DMs</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="save-btn" id="btn-save" title="Save all data">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                    <polyline points="17 21 17 13 7 13 7 21" />
+                    <polyline points="7 3 7 8 15 8" />
+                </svg>
+                <span>Save</span>
+            </button>
+            <button class="export-btn" id="btn-export" title="Export data as JSON backup">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                <span>Export</span>
+            </button>
+            <button class="import-btn" id="btn-import" title="Import data from JSON backup">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                </svg>
+                <span>Import</span>
+            </button>
+            <input type="file" id="import-file-input" accept=".json" style="display:none">
+            <a href="index.html" class="back-to-site" title="Back to Leadvate website">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12" />
+                    <polyline points="12 19 5 12 12 5" />
+                </svg>
+                <span>Back to Site</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- ========== MOBILE NAV ========== -->
+    <nav class="mobile-nav" id="mobile-nav">
+        <button class="mobile-nav-btn active" data-view="calendar">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            <span>Calendar</span>
+        </button>
+        <button class="mobile-nav-btn" data-view="goals">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="6" />
+                <circle cx="12" cy="12" r="2" />
+            </svg>
+            <span>Goals</span>
+        </button>
+        <button class="mobile-nav-btn" data-view="crm">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+            </svg>
+            <span>CRM</span>
+        </button>
+        <button class="mobile-nav-btn" data-view="colddm">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+            <span>DMs</span>
+        </button>
+    </nav>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content" id="main-content">
+
+        <!-- ===== CALENDAR VIEW ===== -->
+        <section class="view view-active" id="view-calendar">
+            <header class="view-header">
+                <div class="header-left">
+                    <h1 id="calendar-month-title">January 2026</h1>
+                    <div class="year-tabs">
+                        <button class="year-tab active" data-year="2026">2026</button>
+                        <button class="year-tab" data-year="2027">2027</button>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="icon-btn" id="btn-prev-month" title="Previous month">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </button>
+                    <button class="btn-today" id="btn-today">Today</button>
+                    <button class="icon-btn" id="btn-next-month" title="Next month">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Marker Legend -->
+            <div class="marker-legend">
+                <span class="legend-item"><span class="legend-dot dot-red"></span>Important Work</span>
+                <span class="legend-item"><span class="legend-dot dot-blue"></span>Meeting</span>
+                <span class="legend-item"><span class="legend-dot dot-yellow"></span>Important Info</span>
+                <span class="legend-item"><span class="legend-dot dot-green"></span>Personal</span>
+                <span class="legend-item"><span class="legend-dot dot-purple"></span>Follow-up</span>
+            </div>
+
+            <!-- Month Picker (mini) -->
+            <div class="month-picker" id="month-picker"></div>
+
+            <!-- Calendar Grid -->
+            <div class="calendar-grid-wrapper">
+                <div class="calendar-weekdays">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div class="calendar-grid" id="calendar-grid"></div>
+            </div>
+
+            <!-- Day Detail Panel -->
+            <div class="day-detail-panel" id="day-detail-panel">
+                <div class="day-detail-header">
+                    <h2 id="day-detail-title">Select a Day</h2>
+                    <button class="btn-add-task" id="btn-add-task" style="display:none">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                        Add Task
+                    </button>
+                </div>
+                <div class="task-list" id="task-list">
+                    <p class="empty-state">Click on a day to view or add tasks</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MONTHLY GOALS VIEW ===== -->
+        <section class="view" id="view-goals">
+            <header class="view-header">
+                <div class="header-left">
+                    <h1>Monthly Goals</h1>
+                    <div class="year-tabs">
+                        <button class="year-tab active" data-year="2026" id="goals-year-2026">2026</button>
+                        <button class="year-tab" data-year="2027" id="goals-year-2027">2027</button>
+                    </div>
+                </div>
+            </header>
+            <div class="goals-container" id="goals-container"></div>
+        </section>
+
+        <!-- ===== CRM VIEW ===== -->
+        <section class="view" id="view-crm">
+            <header class="view-header">
+                <div class="header-left">
+                    <h1>Client Management</h1>
+                </div>
+                <div class="header-right">
+                    <button class="btn-primary" id="btn-add-client">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                        Add Client
+                    </button>
+                </div>
+            </header>
+
+            <!-- CRM Tabs -->
+            <div class="crm-tabs">
+                <button class="crm-tab active" data-crm-view="clients" id="crm-tab-clients">Clients</button>
+                <button class="crm-tab" data-crm-view="meetings" id="crm-tab-meetings">Meetings</button>
+                <button class="crm-tab" data-crm-view="logs" id="crm-tab-logs">Business Logs</button>
+            </div>
+
+            <!-- Clients List -->
+            <div class="crm-content crm-content-active" id="crm-clients">
+                <div class="client-list" id="client-list">
+                    <p class="empty-state">No clients added yet. Click "Add Client" to get started.</p>
+                </div>
+            </div>
+
+            <!-- Meetings List -->
+            <div class="crm-content" id="crm-meetings">
+                <div class="meetings-header">
+                    <button class="btn-primary" id="btn-add-meeting">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                        Add Meeting
+                    </button>
+                </div>
+                <div class="meeting-list" id="meeting-list">
+                    <p class="empty-state">No meetings logged yet.</p>
+                </div>
+            </div>
+
+            <!-- Business Logs -->
+            <div class="crm-content" id="crm-logs">
+                <div class="logs-header">
+                    <button class="btn-primary" id="btn-add-log">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                        Add Log Entry
+                    </button>
+                </div>
+                <div class="log-list" id="log-list">
+                    <p class="empty-state">No business logs yet.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COLD DM TRACKER VIEW ===== -->
+        <section class="view" id="view-colddm">
+            <header class="view-header">
+                <div class="header-left">
+                    <h1>Cold DM Tracker</h1>
+                </div>
+                <div class="header-right">
+                    <button class="btn-primary" id="btn-reset-dms">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="1 4 1 10 7 10" />
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+                        </svg>
+                        Reset All
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats -->
+            <div class="colddm-stats">
+                <div class="colddm-stat-card">
+                    <div class="colddm-stat-number" id="dm-checked-count">0</div>
+                    <div class="colddm-stat-label">DMs Sent</div>
+                </div>
+                <div class="colddm-stat-card">
+                    <div class="colddm-stat-number" id="dm-remaining-count">100</div>
+                    <div class="colddm-stat-label">Remaining</div>
+                </div>
+                <div class="colddm-stat-card colddm-stat-progress-card">
+                    <div class="colddm-stat-number" id="dm-percent">0%</div>
+                    <div class="colddm-stat-label">Progress</div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="colddm-progress-wrapper">
+                <div class="colddm-progress-bar">
+                    <div class="colddm-progress-fill" id="dm-progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Checkbox Grid -->
+            <div class="colddm-grid" id="colddm-grid">
+                <!-- 100 checkboxes rendered by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== MODAL OVERLAY ========== -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Add Task</h3>
+                <button class="modal-close" id="modal-close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TOAST ========== -->
+    <div class="toast" id="toast">
+        <span id="toast-message">Saved successfully!</span>
+    </div>
+
+    <script src="reminder app/app.js"></script>
+</body>
+
+</html>
